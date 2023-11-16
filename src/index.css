@@ -1,7 +1,10 @@
 body {
-    padding: 20px;
+    padding: 3rem;
 }
 
 button {
-    margin-right: 10px;
+    margin-right: 1rem;
+    padding: 1rem;
+    font-size: 2rem;
+    font-weight: bold;
 }
