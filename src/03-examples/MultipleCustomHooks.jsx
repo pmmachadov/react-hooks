@@ -7,9 +7,10 @@ import { LoadingQuote, Quote } from './';
 export const MultipleCustomHooks = () => {
 
     const { counter, increment } = useCounter(1);
-    const { data, isLoading, hasError } = useFetch(`https://www.breakingbadapi.com/api/quotes/${ counter }`);
+    const { data, isLoading, hasError } = useFetch(`https://api.breakingbadquotes.xyz/v1/quotes/${counter}`);
     const { author, quote } = !!data && data[0];
-    
+
+    console.log(author, quote);
     return (
         <>
             <h1>BreakingBad Quotes</h1>
@@ -17,11 +18,11 @@ export const MultipleCustomHooks = () => {
 
             {
                 isLoading
-                 ? <LoadingQuote />
-                 : <Quote author={ author } quote={ quote } />
+                    ? <LoadingQuote />
+                    : <Quote author={ author } quote={ quote } />
             }
-                      
-            <button 
+
+            <button
                 className="btn btn-primary"
                 disabled={ isLoading }
                 onClick={ () => increment() }>

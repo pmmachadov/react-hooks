@@ -1,46 +1,51 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Message } from './Message';
 
-
+// Componente funcional SimpleForm
 export const SimpleForm = () => {
 
-    const [formState, setFormState] = useState({
-        username: 'strider',
-        email: 'fernando@google.com'
+    // Estado del formulario usando el hook useState
+    const [formState, setFormState] = useState({    // Estado inicial del formulario
+        username: 'strider',    // Nombre de usuario
+        email: 'fernando@google.com'    // Correo electrónico
     });
 
+    // Desestructuración del estado del formulario para acceder a las propiedades
     const { username, email } = formState;
 
-    const onInputChange = ({ target }) => {
-        const { name, value } = target;
+    // Función para manejar cambios en los campos de entrada del formulario
+    const onInputChange = ({ target }) => { // Desestructurar el evento para obtener el campo de entrada
+        const { name, value } = target; // Desestructurar el nombre y valor del campo de entrada
         setFormState({
-            ...formState,
-            [ name ]: value
+            ...formState,   // Mantener los valores anteriores
+            [name]: value   // Actualizar el valor del campo de entrada que cambió
         });
     }
 
-
-    useEffect( () => {
+    // useEffect para ejecutar código cuando el componente se monta (solo una vez)
+    useEffect(() => {   // Recibe una función que se ejecuta cuando el componente se monta
         // console.log('useEffect called!');
-    }, []);
-    
-    useEffect( () => {
+    }, []); // El arreglo vacío indica que el efecto se ejecuta solo una vez
+
+    // useEffect para ejecutar código cuando el estado del formulario cambia
+    useEffect(() => {   // Recibe una función que se ejecuta cuando el componente se monta
         // console.log('formState changed!');
-    }, [formState]);
+    }, [formState]);    // El arreglo contiene las dependencias del efecto (se ejecuta cuando cambian)
 
-    useEffect( () => {
+    // useEffect para ejecutar código cuando el valor de 'email' cambia
+    useEffect(() => {   // Recibe una función que se ejecuta cuando el componente se monta
         // console.log('email changed!');
-    }, [ email ]);
+    }, [email]);    // El arreglo contiene las dependencias del efecto (se ejecuta cuando cambian)
 
-    
-
+    // Renderización del componente
     return (
         <>
-            <h1>Formulario Simple</h1> 
+            <h1>Formulario Simple</h1>
             <hr />
 
-            <input 
-                type="text" 
+            {/* Campo de entrada para el nombre de usuario */ }
+            <input
+                type="text"
                 className="form-control"
                 placeholder="Username"
                 name="username"
@@ -48,8 +53,9 @@ export const SimpleForm = () => {
                 onChange={ onInputChange }
             />
 
-            <input 
-                type="email" 
+            {/* Campo de entrada para el correo electrónico */ }
+            <input
+                type="email"
                 className="form-control mt-2"
                 placeholder="fernando@google.com"
                 name="email"
@@ -57,9 +63,9 @@ export const SimpleForm = () => {
                 onChange={ onInputChange }
             />
 
-
+            {/* Renderizar el componente Message solo si el nombre de usuario es 'strider2' */ }
             {
-                (username === 'strider2' ) && <Message />
+                (username === 'strider2') && <Message />
             }
 
         </>
